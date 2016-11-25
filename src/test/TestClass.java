@@ -68,7 +68,7 @@ public class TestClass {
             switch (choice) {
                 case 1:
                     System.out.println("**************************************************");
-                    System.out.println("Welcome to JS Bank");
+                    System.out.println("Welcome to JS Bank by Stephen Kelly (X00119766) And Jordan Gardner (X00126750)");
                     System.out.println("Please enter your Username: ");
                     String username = in.nextLine();
                     System.out.println("Please enter your Password: ");
@@ -146,7 +146,7 @@ public class TestClass {
             System.out.println("Please press 4 to view BankAccount table");
             System.out.println("Please press 5 to view StudentAccount table");
             System.out.println("Please press 6 to go back to previous menu");
-            System.out.println("Press 7 to quit");
+            System.out.println("Press 8 to quit");
 
             int choice = in.nextInt();
             in.nextLine();
@@ -176,7 +176,6 @@ public class TestClass {
                     jpas.readStudentAccount();
 
                     break;
-
                 case 6:
                     displayMenu2(username, password);
                 case 7:
@@ -301,11 +300,11 @@ public class TestClass {
                     String County = in.nextLine();
                     System.out.println("Please enter Customer's Country: ");
                     String Country = in.nextLine();
-                    System.out.println("Please enter Customer's Birth Date: ");
+                    System.out.println("Please enter Customer's Birth Date (D): ");
                     int day = in.nextInt();
-                    System.out.println("Please enter Customer's Birth Month: ");
+                    System.out.println("Please enter Customer's Birth Month (M): ");
                     int month = in.nextInt();
-                    System.out.println("Please enter Customer's Birth Year: ");
+                    System.out.println("Please enter Customer's Birth Year (YYYY): ");
                     int year = in.nextInt();
                     Calendar dob1 = Calendar.getInstance();
                     dob1.set(year, month, day);
@@ -474,75 +473,8 @@ public class TestClass {
         }
     }
 
-    public static void displayMenu3(String username, String password) {
-        Scanner in = new Scanner(System.in);
-        while (true) {
-            System.out.println("******** " + username + " ********");
-            System.out.println("Please press 1 to view tables");
-            System.out.println("Please press 2 to update tables");
-            System.out.println("Please press 3 to delete from tables");
-            System.out.println("Please press 4 to add to tables");
-            System.out.println("Please press 5 to go back to main menu");
-            System.out.println("Press 6 to quit");
-
-            int choice = in.nextInt();
-            in.nextLine();
-
-            switch (choice) {
-                case 1:
-
-                    viewTablesMenu(username, password);
-                    jpas.readCustomer();
-                    break;
-                case 2:
-                /*System.out.println("please enter the id of the contact you wish to update");
-                 int cid = in.nextInt();
-                 in.nextLine();
-                 if (!jpas.findContact(cid, owner)) {
-                 System.out.println("Entity not found");
-                 } else {
-                 System.out.println("Please enter the new phone number for " + cid);
-                 String newNum = in.nextLine();
-                 //jpas.updateContact(cid, newNum);
-                 }
-                 break;
-                 */
-                case 3:
-                /*
-                 System.out.println("please enter the id of the contact you wish to delete");
-                 int idDelete = in.nextInt();
-                 in.nextLine();
-                 if (!jpas.findContact(idDelete, owner)) {
-                 System.out.println("Entity not found");
-                 } else {
-                 jpas.removeContact(idDelete);
-                 System.out.println("Entity removed");
-                 }
-                 break;
-                 */
-                case 4:
-                /*
-                 System.out.println("please enter the name of the contact you wish to add");
-                 String nameAdd = in.nextLine();
-                 System.out.println("please enter the address of the contact you wish to add");
-                 String addAdd = in.nextLine();
-                 System.out.println("please enter the email of the contact you wish to add");
-                 String emailAdd = in.nextLine();
-                 System.out.println("please enter the number of the contact you wish to add");
-                 String numAdd = in.nextLine();
-                 jpas.createContact(nameAdd, addAdd, numAdd, emailAdd, owner);
-                 break;
-                 */
-                case 5:
-                    displayMenu1();
-                case 6:
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Invalid Option entered");
-                    break;
-            }
-        }
+   
+        
     }
 
-}
+

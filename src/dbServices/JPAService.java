@@ -20,7 +20,9 @@ public class JPAService {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("SD3CABankPU");
     EntityManager em = emf.createEntityManager();
 
-    /*public int findUsernameID(String user1) {
+    /*
+    Unused username Check
+    public int findUsernameID(String user1) {
      int userID = 0;
      Query query = em.createQuery("SELECT c.user_id from SystemUser c "
      + "WHERE c.username=:value", 
@@ -106,16 +108,16 @@ public class JPAService {
         return branchID;
     }
 
-    public void printAllCustomers(String fname, String lname) {
+    public void printAllAccounts(String fname, String lname) {
         int id = findCustomerID(fname, lname);
-        Query q = em.createNativeQuery("SELECT C.Cust_id, C.Fname, C.Lname,"
-                + "C.House_Num, C.Street, C.city, C.County"
-                + ", C.Country, C.DOB FROM Customer2 C, "
-                + "WHERE C.Cust_id=" + id, Customer.class);
-        List<Customer> results = q.getResultList();
+        Query q = em.createNativeQuery("SELECT b.AccNumber, b.AccName, b.branch_id"
+                + " FROM Bank_Account b, AccCust ac "
+                + " WHERE b.AccNumber = ac.AccNumber"
+                + " and ac.Cust_id=" + id, BankAccount.class);
+        List<BankAccount> results = q.getResultList();
 
-        for (Customer c : results) {
-            System.out.println(c);
+        for (BankAccount b : results) {
+            System.out.println(b);
         }
     }
 
@@ -178,7 +180,7 @@ public class JPAService {
         }
 
     }
-/*
+/* Unused Force user to create an account upon creating the customer
     public Customer createCustomerCurrentAccount(String FnameAdd, String LnameAdd, String House_NumAdd,
             String StreetAdd, String cityAdd, String CountyAdd, String CountryAdd, Calendar DOBAdd, String accNameAdd, String branchNameBank) {
         
@@ -259,27 +261,7 @@ public class JPAService {
         em.getTransaction().commit();
         return l;
     }
-    /*
-    public BankAccount createBankAccountNewCustomer(String AccName, String branchName) {
-
-        int Bid = findBranchID(branchName);
-        Branch br = em.find(Branch.class, Bid);
-
-      
-
-        em.getTransaction().begin();
-
-        BankAccount b = new BankAccount(AccName, br);
-
-        b.setBr(br);
-     
-
-        em.persist(b);
-
-        em.getTransaction().commit();
-        return b;
-    }*/
-
+    
     public BankAccount createBankAccount(String AccName, String branchName, String fname, String lname) {
 
         int Bid = findBranchID(branchName);
@@ -385,49 +367,4 @@ public class JPAService {
         em.getTransaction().commit();
     }
 
-    /*
-     public boolean findContact(int cid, String owner) {
-     System.out.println("In here Contact Id" + cid);
-     boolean found = false;
-     int ownerid = findOwnerID(owner);
-
-     Query q = em.createNativeQuery("SELECT C.PNUMBER\n"
-     + "FROM CONTACTS C, CONTACTSADDRESSBOOK CAB\n"
-     + "where C.ID = CAB.CID\n"
-     + "and CAB.ABID = " + ownerid
-     + "and c.id = " + cid);
-     List<Contact> results = q.getResultList();
-        
-     //easier than for loop below
-     if (!results.isEmpty()){
-     found = true;
-     }
-     return found;
-     }
-    
-     public void updateContact(int id , String newNum){
-     em.getTransaction().begin();
-     Contact c = em.find(Contact.class, id);
-     c.setPhoneNumber(newNum);
-     em.getTransaction().commit();
-     }
-
-     public void removeContact(int id) {
-     Contact c = em.find(Contact.class, id);
-     em.getTransaction().begin();
-     em.remove(c);
-     em.getTransaction().commit();
-     }
-    
-     public Contact createContact(String nameAdd, String addAdd, String emailAdd, 
-     String numAdd, String owner){
-     int id = findOwnerID(owner);
-     AddressBookOwner abo =  em.find(AddressBookOwner.class, id);
-     em.getTransaction().begin();
-     Contact c = new Contact(nameAdd, addAdd, emailAdd, numAdd);
-     c.addStaff(abo);
-     em.getTransaction().commit();
-     return c;
-     }
-     */
 }

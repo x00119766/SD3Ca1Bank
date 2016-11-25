@@ -25,10 +25,10 @@ public class Branch {
     private String branch_name;
     private String branchAddress;
 
-    @OneToMany(mappedBy = "br")
+    @OneToMany(mappedBy = "br" , cascade = CascadeType.ALL)
     private List<BankAccount> blist = new ArrayList<>();
     
-    @OneToMany(mappedBy = "br")
+    @OneToMany(mappedBy = "br", cascade = CascadeType.ALL)
     private List<Lodgement> llist = new ArrayList<>();
 
     public Branch() {

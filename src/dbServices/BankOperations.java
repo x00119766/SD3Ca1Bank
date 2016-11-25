@@ -525,14 +525,24 @@ public class BankOperations {
             pstmt.setString(8, "23-Jun-1990");
             pstmt.execute();
 
-            pstmt.setString(1, "Joe");
+            pstmt.setString(1, "Bob");
             pstmt.setString(2, "Jones");
-            pstmt.setString(3, "45");
-            pstmt.setString(4, "Main Street");
-            pstmt.setString(5, "Tallaght");
+            pstmt.setString(3, "33");
+            pstmt.setString(4, "Blue Street");
+            pstmt.setString(5, "Drimnagh");
             pstmt.setString(6, "Dublin");
             pstmt.setString(7, "Ireland");
-            pstmt.setString(8, "23-Mar-1980");
+            pstmt.setString(8, "03-Mar-1984");
+            pstmt.execute();
+
+            pstmt.setString(1, "Ryan");
+            pstmt.setString(2, "Bloggs");
+            pstmt.setString(3, "104");
+            pstmt.setString(4, "Green Street");
+            pstmt.setString(5, "Crumlin");
+            pstmt.setString(6, "Dublin");
+            pstmt.setString(7, "Ireland");
+            pstmt.setString(8, "13-Jun-1980");
             pstmt.execute();
 
             pstmt.setString(1, "Joe");
@@ -545,34 +555,24 @@ public class BankOperations {
             pstmt.setString(8, "23-Mar-1980");
             pstmt.execute();
 
-            pstmt.setString(1, "Joe");
-            pstmt.setString(2, "Bloggs");
-            pstmt.setString(3, "45");
-            pstmt.setString(4, "Main Street");
-            pstmt.setString(5, "Tallaght");
+            pstmt.setString(1, "Karl");
+            pstmt.setString(2, "Carey");
+            pstmt.setString(3, "455");
+            pstmt.setString(4, "Purple Street");
+            pstmt.setString(5, "Kingswoord");
             pstmt.setString(6, "Dublin");
             pstmt.setString(7, "Ireland");
-            pstmt.setString(8, "23-Mar-1980");
+            pstmt.setString(8, "18-Jan-1980");
             pstmt.execute();
 
-            pstmt.setString(1, "Joe");
-            pstmt.setString(2, "Bloggs");
+            pstmt.setString(1, "Bobby");
+            pstmt.setString(2, "Keane");
             pstmt.setString(3, "45");
             pstmt.setString(4, "Main Street");
             pstmt.setString(5, "Tallaght");
             pstmt.setString(6, "Dublin");
             pstmt.setString(7, "Ireland");
-            pstmt.setString(8, "23-Mar-1980");
-            pstmt.execute();
-
-            pstmt.setString(1, "Joe");
-            pstmt.setString(2, "Bloggs");
-            pstmt.setString(3, "45");
-            pstmt.setString(4, "Main Street");
-            pstmt.setString(5, "Tallaght");
-            pstmt.setString(6, "Dublin");
-            pstmt.setString(7, "Ireland");
-            pstmt.setString(8, "23-Mar-1980");
+            pstmt.setString(8, "24-Mar-1980");
             pstmt.execute();
 
             System.out.println("Customer2 table created");

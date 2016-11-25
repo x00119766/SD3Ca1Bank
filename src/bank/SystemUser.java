@@ -16,9 +16,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "systemUser")
+@SequenceGenerator(name = "user_id_seq", initialValue = 1, allocationSize = 1)
 public class SystemUser {
     
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_id_seq")
     private int user_id;
     private String username;
     private String password;

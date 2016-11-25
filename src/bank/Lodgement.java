@@ -12,21 +12,23 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "LODGEMENT")
+@SequenceGenerator(name = "lodgement_id_seq", initialValue = 1, allocationSize = 1)
 public class Lodgement {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "lodgement_id_seq")
     private int lodgement_id;
     private String lodgement_title;
     private double lodgement_amt;
-   
+
     @ManyToOne()
     @JoinColumn(name = "branch_id")
-    private Branch br;   
+    private Branch br;
 
     @ManyToOne()
     @JoinColumn(name = "Cust_id")
     private Customer cu;
-    
+
     public Lodgement() {
     }
 
@@ -34,7 +36,7 @@ public class Lodgement {
         this.lodgement_id = lodgement_id;
         this.lodgement_title = lodgement_title;
         this.lodgement_amt = lodgement_amt;
-      
+
     }
 
     public Lodgement(String lodgement_title, double lodgement_amt, Branch br, Customer cu) {
@@ -48,10 +50,6 @@ public class Lodgement {
         this.lodgement_title = lodgement_title;
         this.lodgement_amt = lodgement_amt;
     }
-    
-    
-    
-    
 
     public int getLodgement_id() {
         return lodgement_id;
@@ -77,15 +75,27 @@ public class Lodgement {
         this.lodgement_amt = lodgement_amt;
     }
 
-    
+    public Branch getBr() {
+        return br;
+    }
 
+    public void setBr(Branch br) {
+        this.br = br;
+    }
+
+    public Customer getCu() {
+        return cu;
+    }
+
+    public void setCu(Customer cu) {
+        this.cu = cu;
+    }
+    
+    
 
     @Override
     public String toString() {
         return "Lodgement | " + "lodgement_id: " + lodgement_id + ", lodgement_title: " + lodgement_title + ", lodgement_amt: " + lodgement_amt;
     }
 
-   
-    
-    
 }

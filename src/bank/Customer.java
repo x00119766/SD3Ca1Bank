@@ -18,9 +18,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Customer2")
+@SequenceGenerator(name = "Cust_id_seq", initialValue = 1, allocationSize = 1)
 public class Customer {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Cust_id_seq")
     private int Cust_id;
     private String Fname;
     private String Lname;
@@ -36,6 +38,7 @@ public class Customer {
     @JoinTable(name = "AccCust",
             joinColumns = @JoinColumn(name = "Cust_id"),
             inverseJoinColumns = @JoinColumn(name = "AccNumber"))
+    
     private List<BankAccount> blist = new ArrayList<>();
     
     @OneToMany(mappedBy = "cu")

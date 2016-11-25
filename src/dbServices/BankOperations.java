@@ -29,13 +29,13 @@ public class BankOperations {
               */
               
             // Tallaght
-            //ods.setURL("jdbc:oracle:thin:@//10.10.2.7:1521/global1");
-            //ods.setUser("x00119766");
-           // ods.setPassword("db05Jun97");
+            ods.setURL("jdbc:oracle:thin:@//10.10.2.7:1521/global1");
+            ods.setUser("x00119766");
+            ods.setPassword("db05Jun97");
             // Home Oracle XE
-            ods.setURL("jdbc:oracle:thin:@localhost:1521:XE");
-           ods.setUser("hr");
-            ods.setPassword("05Jun97");
+            //ods.setURL("jdbc:oracle:thin:@localhost:1521:XE");
+           //ods.setUser("hr");
+           // ods.setPassword("05Jun97");
 
             conn = ods.getConnection();
             System.out.println("connected.");

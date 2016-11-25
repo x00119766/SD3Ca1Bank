@@ -16,9 +16,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Branch")
+@SequenceGenerator(name = "branch_id_seq", initialValue = 1, allocationSize = 1)
 public class Branch {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "branch_id_seq")
     private int branch_id;
     private String branch_name;
     private String branchAddress;

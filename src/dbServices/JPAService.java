@@ -9,8 +9,13 @@ import bank.Lodgement;
 import bank.StudentAccount;
 import bank.SystemUser;
 import java.util.Calendar;
+import java.util.Scanner;
+
+import dbServices.BankOperations;
 
 public class JPAService {
+
+    Scanner in = new Scanner(System.in);
 
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("SD3CABankPU");
     EntityManager em = emf.createEntityManager();
@@ -173,6 +178,44 @@ public class JPAService {
         }
 
     }
+/*
+    public Customer createCustomerCurrentAccount(String FnameAdd, String LnameAdd, String House_NumAdd,
+            String StreetAdd, String cityAdd, String CountyAdd, String CountryAdd, Calendar DOBAdd, String accNameAdd, String branchNameBank) {
+        
+       
+       
+        
+       Customer c =  createCustomer(FnameAdd, LnameAdd, House_NumAdd, StreetAdd, cityAdd, CountyAdd, CountryAdd, DOBAdd);
+       BankAccount b = createBankAccount(accNameAdd, branchNameBank, FnameAdd, LnameAdd);
+
+        em.getTransaction().begin();
+      
+       
+        c.addBankAccount(b);
+        
+        em.persist(c);
+
+        em.getTransaction().commit();
+        return c;
+
+    }
+
+    public Customer createCustomerStudentAccount(String FnameAdd, String LnameAdd, String House_NumAdd,
+            String StreetAdd, String cityAdd, String CountyAdd, String CountryAdd, Calendar DOBAdd, String accNameAdd, String collegeName, String branchNameBank) {
+
+        Customer c = new Customer(FnameAdd, LnameAdd, House_NumAdd,
+                StreetAdd, cityAdd, CountyAdd, CountryAdd, DOBAdd);
+
+        c.addBankAccount(createStudentAccount(accNameAdd, collegeName, branchNameBank,FnameAdd, LnameAdd ));
+
+        em.getTransaction().begin();
+
+        em.persist(c);
+
+        em.getTransaction().commit();
+        return c;
+
+    }*/
 
     public Customer createCustomer(String FnameAdd, String LnameAdd, String House_NumAdd,
             String StreetAdd, String cityAdd, String CountyAdd, String CountryAdd, Calendar DOBAdd) {
@@ -180,10 +223,12 @@ public class JPAService {
         em.getTransaction().begin();
         Customer c = new Customer(FnameAdd, LnameAdd, House_NumAdd,
                 StreetAdd, cityAdd, CountyAdd, CountryAdd, DOBAdd);
+
         em.persist(c);
 
         em.getTransaction().commit();
         return c;
+
     }
 
     public Branch createBranch(String nameAdd, String addressAdd) {
@@ -206,40 +251,73 @@ public class JPAService {
         em.getTransaction().begin();
         Lodgement l = new Lodgement(titleAdd, amtAdd, br, cu);
 
+        l.setBr(br);
+        l.setCu(cu);
+
         em.persist(l);
 
         em.getTransaction().commit();
         return l;
     }
-
-    public BankAccount createBankAccount(String AccName, String branchName) {
+    /*
+    public BankAccount createBankAccountNewCustomer(String AccName, String branchName) {
 
         int Bid = findBranchID(branchName);
         Branch br = em.find(Branch.class, Bid);
 
+      
+
         em.getTransaction().begin();
-        
+
         BankAccount b = new BankAccount(AccName, br);
-        
-        b.setBr(br); 
+
+        b.setBr(br);
+     
+
+        em.persist(b);
+
+        em.getTransaction().commit();
+        return b;
+    }*/
+
+    public BankAccount createBankAccount(String AccName, String branchName, String fname, String lname) {
+
+        int Bid = findBranchID(branchName);
+        Branch br = em.find(Branch.class, Bid);
+
+        int id = findCustomerID(fname, lname);
+        Customer c = em.find(Customer.class, id);
+
+        em.getTransaction().begin();
+
+        BankAccount b = new BankAccount(AccName, br);
+
+        b.setBr(br);
+        b.addCustomer(c);
+
         em.persist(b);
 
         em.getTransaction().commit();
         return b;
     }
-    
-     public StudentAccount createStudentAccount(String AccName, String collegeName, String branchName) {
+
+    public StudentAccount createStudentAccount(String AccName, String collegeName, String branchName, String fname, String lname) {
 
         int Bid = findBranchID(branchName);
         Branch br = em.find(Branch.class, Bid);
-        
-        
+
+        int id = findCustomerID(fname, lname);
+        Customer c = em.find(Customer.class, id);
+
         em.getTransaction().begin();
+
+        StudentAccount s = new StudentAccount(AccName, collegeName, br);
         
-        StudentAccount s = new StudentAccount(AccName,collegeName, br);
         s.setBr(br);
-        em.persist(s); 
-        
+        s.addCustomer(c);
+
+        em.persist(s);
+
         em.getTransaction().commit();
         return s;
     }

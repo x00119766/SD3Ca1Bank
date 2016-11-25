@@ -19,9 +19,11 @@ import javax.persistence.*;
 @Inheritance( strategy = InheritanceType.JOINED )
 @DiscriminatorColumn( name = "type" )
 @DiscriminatorValue("Current")
+@SequenceGenerator(name = "AccNumber_seq", initialValue = 1, allocationSize = 1)
 public class BankAccount implements Serializable{
     
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "AccNumber_seq")
     private int AccNumber;
     private String AccName;
     
@@ -81,7 +83,11 @@ public class BankAccount implements Serializable{
         this.clist = clist;
     }
 
-    
+    public void addCustomer(Customer c) {
+        clist.add(c);
+        c.getBlist().add(this);
+        
+    }
     
     @Override
     public String toString() {

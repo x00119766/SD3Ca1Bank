@@ -301,10 +301,54 @@ public class TestClass {
                     String County = in.nextLine();
                     System.out.println("Please enter Customer's Country: ");
                     String Country = in.nextLine();
-                    System.out.println("Please enter Customer's Date of Birth: ");
-                    //Calendar DOB = in.next();
+                    System.out.println("Please enter Customer's Birth Date: ");
+                    int day = in.nextInt();
+                    System.out.println("Please enter Customer's Birth Month: ");
+                    int month = in.nextInt();
+                    System.out.println("Please enter Customer's Birth Year: ");
+                    int year = in.nextInt();
+                    Calendar dob1 = Calendar.getInstance();
+                    dob1.set(year, month, day);
 
-                    jpas.createCustomer(Fname, Lname, House_Num, Street, city, County, Country, null);
+                    Calendar DOB = dob1;
+                    
+                     jpas.createCustomer(Fname, Lname, House_Num, Street, city, County, Country, dob1);
+                    
+                    /*
+
+                    System.out.println("**** Please choose the Account type you wish to create ****");
+                    System.out.println("Please press 1 to make a Current Account");
+                    System.out.println("Please press 2 to make a Student Account");
+                    System.out.println("Please press 3 to exit");
+                    System.out.println("**************************************************");
+
+                    int acc = in.nextInt();
+                    in.nextLine();
+
+                    if (acc == 1) {
+                        System.out.println("Please enter new Account Name: ");
+                        String accNameAdd = in.nextLine();
+
+                        System.out.println("Please enter Branch Name: ");
+                        String branchNameBank = in.nextLine();
+                        jpas.createCustomerCurrentAccount(Fname, Lname, House_Num, Street, city, County, Country, dob1, accNameAdd, branchNameBank);
+                    } else if (acc == 2) {
+
+                        System.out.println("Please enter new Student Account Name: ");
+                        String studentAccName = in.nextLine();
+
+                        System.out.println("Please enter the college being attended: ");
+                        String collegeName = in.nextLine();
+
+                        System.out.println("Please enter Branch Name: ");
+                        String branchNameStudent = in.nextLine();
+                        jpas.createCustomerStudentAccount(Fname, Lname, House_Num, Street, city, County, Country, dob1, studentAccName, collegeName, branchNameStudent);
+                    } else {
+
+                        jpas.createCustomer(Fname, Lname, House_Num, Street, city, County, Country, dob1);
+                    }*/
+                    
+                    
                     break;
                 case 2:
                     System.out.println("Please enter Branch Name: ");
@@ -338,19 +382,31 @@ public class TestClass {
                     System.out.println("Please enter Branch Name: ");
                     String branchNameBank = in.nextLine();
 
-                    jpas.createBankAccount(accNameAdd, branchNameBank);
+                    System.out.println("Please enter Customer's First Name: ");
+                    String fname2 = in.nextLine();
+                    
+                    System.out.println("Please enter Customer's Last Name: ");
+                    String lname2 = in.nextLine();
+
+                    jpas.createBankAccount(accNameAdd, branchNameBank, fname2, lname2);
                     break;
-               case 5:
+                case 5:
                     System.out.println("Please enter new Student Account Name: ");
                     String studentAccName = in.nextLine();
-                    
+
                     System.out.println("Please enter the college being attended: ");
                     String collegeName = in.nextLine();
 
                     System.out.println("Please enter Branch Name: ");
                     String branchNameStudent = in.nextLine();
+                    
+                    System.out.println("Please enter Customer's First Name: ");
+                    String fname3 = in.nextLine();
+                    
+                    System.out.println("Please enter Customer's Last Name: ");
+                    String lname3 = in.nextLine();
 
-                    jpas.createStudentAccount(studentAccName, collegeName, branchNameStudent);
+                    jpas.createStudentAccount(studentAccName, collegeName, branchNameStudent,fname3, lname3);
                     break;
                 case 6:
                     displayMenu2(username, password);
